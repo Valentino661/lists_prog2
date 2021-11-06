@@ -11,17 +11,27 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * Clase que nos permite
+ * */
 @RestController
-@RequestMapping(path = "boys")
-public class BoysController {
-    @Autowired
+@RequestMapping(path = "boys") // etiqueta nombre para poderlo llamar por la URL
+public class BoysControllerSE {
+
+    @Autowired // Etiqueta para inyectar la listaSE
     private ListSeService listSeService;
 
-    @PostMapping
+    /**
+     * Método Que nos permite mandar todo los datos del niño adicionado
+     * */
+    @PostMapping  // Etiqueta que se utiliza para modificar o agregar datos
     public ResponseEntity<ResponseDTO> addBoy(@RequestBody Boy boy) throws ListaSeException
     { return listSeService.addBoy(boy);}
 
-    @GetMapping
+    /**
+     * Método que nos permite mandar todo los datos de todos los niños adicionados
+     * */
+    @GetMapping  // Etiqueta que se utiliza para acceder a los datos
     public ResponseEntity<ResponseDTO> listBoys() throws ListaSeException
     {
         return listSeService.listBoys();
@@ -97,6 +107,23 @@ public class BoysController {
     {
         return listSeService.getBoysByLocation();
     }
+/*
+    @GetMapping(path = "boysbylocation")
+    public ResponseEntity<ResponseDTO> boysByLocation()
+    {
+        return listSeService.getBoysByLocation();
+    }
+*/
+    @GetMapping(path = "deletebygender/{gender}")
+    public ResponseEntity<ResponseDTO>deleteByGender(@PathVariable String gender)throws ListaSeException
+    {
+        return listSeService.deleteByGender(gender);
+    }
 
+    @GetMapping(path = "getboysbygrade/{grade}")
+    public ResponseEntity<ResponseDTO> getBoysByGrade(Integer grade)
+    {
+        return listSeService.getBoysByGrade(grade);
+    }
 
 }

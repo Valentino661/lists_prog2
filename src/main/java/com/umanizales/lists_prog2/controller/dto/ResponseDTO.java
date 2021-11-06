@@ -5,6 +5,9 @@ import lombok.Data;
 
 import java.util.List;
 
+/**
+ * Clase que nos estandariza las respuestas de todo el servicio
+ * */
 @Data
 @AllArgsConstructor
 public class ResponseDTO {

@@ -10,22 +10,34 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
+/**
+ * Clase para almacenar la información referente a un niño
+ * Maneja campos obligatorios para (identificación, edad, nombre, género ...
+ * @autor Valentin
+ * @version 1.0 - 30-oct-2021
+ *
+ */
+
 @Data
 @AllArgsConstructor
 public class Boy {
-    @NotNull        //La identificacion es obligatoria
-    @NotEmpty       //No puede estar vacia
-    @Size(min = 2)  //Minimo de caracteres
-    private String identification;
+    @NotNull        //La identificación obligatoria
+    @NotEmpty       //No puede estar vacía
+    @Size(min = 2)  //Mínimo de caracteres
+    private String identification;   // Atributo para diferenciar los niños
     @NonNull
     @NotEmpty
     @Size(min = 2, max = 20)
-    private String name;
+    private String name;             // Atributo para saber el nombre de cada niño
     @Positive
-    private byte age;
+    private byte age;               // Atributo para saber la edad de cada niño
     @NotNull
-    private Gender gender;
+    private Gender gender;          // Atributo para saber el género de cada niño
     @Valid
     @NotNull
-    private Location location;
+    private Location location;      // Atributo para saber la localización (municipio) de cada niño
+    @NotNull        //La identificación obligatoria
+    @NotEmpty       //No puede estar vacía
+    private Grade grade;            // Atributo que representa el grado en el que está el niño
+
 }

@@ -13,11 +13,17 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Clase que nos permite crear una respuesta personalizada
+ * */
 @Service
 public class ListSeService {
-    private ListSE listBoys;
+    private ListSE listBoys;     // Atributo que representa una lista de niños
     private List<Location> locations;
 
+    /**
+     * Constructor vacío que nos permite separar un espacio en la listaSE
+     * */
     public ListSeService() {
         listBoys = new ListSE();
         initializaLocations();
@@ -44,10 +50,13 @@ public class ListSeService {
         return false;
     }
 
+    /**
+     * Método que responde cuando se adiciona un niño
+     * */
     public ResponseEntity<ResponseDTO> addBoy(Boy boy) throws ListaSeException
     {
         if (!validateLocation(boy.getLocation())){
-            throw new ListaSeException("La ubicacion ingresada no es valida.");
+            throw new ListaSeException("La ubicación ingresada no es valida.");
         }
 
         listBoys.add(boy);
@@ -148,6 +157,44 @@ public class ListSeService {
                 new ResponseDTO("Satisfactorio", boysByLocations,null)
                 ,HttpStatus.OK);
     }
+
+
+
+    public ResponseEntity<ResponseDTO> listBoysByLocationByAge(byte age, String location) throws ListaSeException
+    {
+        listBoys.listBoysByLocationByAge(age, location);
+        return new ResponseEntity<>(
+                new ResponseDTO("Satisfactorio", listBoysByLocationByAge(age, location)
+                        ,null), HttpStatus.OK);
+    }
+
+    public ResponseEntity<ResponseDTO> listByGenderAge(byte age, String gender) throws ListaSeException
+    {
+        listBoys.listByGenderAge(age, gender);
+        return new ResponseEntity<>(new ResponseDTO("Satisfactorio",
+                listByGenderAge(age, gender), null), HttpStatus.OK);
+    }
+
+    public ResponseEntity<ResponseDTO> deleteByAge (byte age)
+    {
+        listBoys.deleteByAge(age);
+        return new ResponseEntity<>(new ResponseDTO("Niño eliminado", age,null)
+                , HttpStatus.OK);
+    }
+
+    public ResponseEntity<ResponseDTO> deleteByGender(String gender) throws ListaSeException {
+        listBoys.deleteByGender(gender);
+        return new ResponseEntity<>(
+                new ResponseDTO("Niño eliminado",gender,null), HttpStatus.OK);
+    }
+
+    public ResponseEntity<ResponseDTO> getBoysByGrade(Integer grade)
+    {
+        listBoys.getBoysByGrade(grade);
+        return new ResponseEntity<>(
+                new ResponseDTO("Satisfactorio",true,null), HttpStatus.OK);
+    }
+
 
 
 }
