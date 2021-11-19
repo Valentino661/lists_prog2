@@ -120,10 +120,5 @@ public class BoysControllerSE {
         return listSeService.deleteByGender(gender);
     }
 
-    @GetMapping(path = "getboysbygrade/{grade}")
-    public ResponseEntity<ResponseDTO> getBoysByGrade(Integer grade)
-    {
-        return listSeService.getBoysByGrade(grade);
-    }
 
 }

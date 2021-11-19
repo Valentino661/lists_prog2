@@ -2,7 +2,6 @@ package com.umanizales.lists_prog2.model.listase;
 
 import com.umanizales.lists_prog2.exception.ListaSeException;
 import com.umanizales.lists_prog2.model.Boy;
-import com.umanizales.lists_prog2.model.Gender;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -295,6 +294,7 @@ public class ListSE {
 
     /**
      * Método que válida si ya existe el niño que voy a ingresar
+     * @throws ListaSeException
      */
     public void validateListEmpty() throws ListaSeException
     {
@@ -519,32 +519,6 @@ public class ListSE {
             }
             throw new ListaSeException("la lista esta vacía");
         }
-    }
-
-    /**
-     * Método que me permita obtener los niños de un grado de escuela dado (1,2,3,4,5)
-     * @param grade
-     */
-    public List<Boy> getBoysByGrade(Integer grade)
-    {
-        if (this.head != null) // Si hay datos en la lista
-        {
-            Node temp = this.head; // Llamo a un ayudante y lo paro en la cabeza
-            List<Boy> list = new ArrayList<>(); // Inicializamos una lista para guardar los datos
-            while (temp != null) // Recorremos la lista hasta que su sig sea null
-            {
-                /**
-                 * Si el niño en el que está el ayudante es igual al grado ingresado
-                 */
-                if (temp.getData().getGrade().equals(grade))
-                {
-                    list.add(temp.getData()); // Agregamos el niño en la lista
-                }
-                temp = temp.getNext(); // Ayudante pasa a su sig
-            }
-            return list; // Retorno los datos de la lista
-        }
-        return null; // Retorna vacío si no hay datos
     }
 
 }

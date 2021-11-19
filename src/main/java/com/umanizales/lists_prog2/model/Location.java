@@ -20,7 +20,6 @@ import javax.validation.constraints.NotNull;
 public class Location {
     @NotNull         //La identificación es obligatoria
     @NotEmpty       //No puede estar vacía
-
     private String code;           // Atributo que define el código del municipio, pais ...
     @NotNull
     @NotEmpty

@@ -33,11 +33,15 @@ public class Boy {
     private byte age;               // Atributo para saber la edad de cada niño
     @NotNull
     private Gender gender;          // Atributo para saber el género de cada niño
-    @Valid
+    @Valid           // Mira si existe el dato mandado
     @NotNull
     private Location location;      // Atributo para saber la localización (municipio) de cada niño
     @NotNull        //La identificación obligatoria
     @NotEmpty       //No puede estar vacía
-    private Grade grade;            // Atributo que representa el grado en el que está el niño
+    private byte grade;            // Atributo que representa el grado en el que está el niño
+    @NotNull
+    private boolean orphan;
+    @NotNull
+    private String rh;
 
 }

@@ -45,6 +45,28 @@ public class BoysControllerDE {
         return listDeService.delete();
     }
 
+    @GetMapping(path = "orderlistboysandgirls")
+    public ResponseEntity<ResponseDTO>orderListBoysAndGirls() throws ListaDeException
+    {
+        return listDeService.orderListBoysAndGirls();
+    }
+
+    @GetMapping(path = "genderlocation")
+    public ResponseEntity<ResponseDTO>  getGenderByLocation() throws ListaDeException {
+        return listDeService.getGenderByLocation();
+    }
+
+    @GetMapping (path = "orphanbygradesbylocation")
+    public  ResponseEntity<ResponseDTO>getOrphanByGradesByLocation()
+    {
+        return  listDeService.getOrphansByGradesBylocation();
+    }
+
+    @GetMapping(path = "locationbygender")
+    public ResponseEntity<ResponseDTO>getboysByLocationByGenderDTO()
+    {
+        return listDeService.getboysByLocationByGenderDTO();
+    }
 
 
 

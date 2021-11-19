@@ -188,13 +188,4 @@ public class ListSeService {
                 new ResponseDTO("Niño eliminado",gender,null), HttpStatus.OK);
     }
 
-    public ResponseEntity<ResponseDTO> getBoysByGrade(Integer grade)
-    {
-        listBoys.getBoysByGrade(grade);
-        return new ResponseEntity<>(
-                new ResponseDTO("Satisfactorio",true,null), HttpStatus.OK);
-    }
-
-
-
 }

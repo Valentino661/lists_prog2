@@ -1,5 +1,7 @@
 package com.umanizales.lists_prog2.service;
 
+import com.umanizales.lists_prog2.controller.dto.GenderGradesRHDTO;
+import com.umanizales.lists_prog2.controller.dto.GradesByLocationDTO;
 import com.umanizales.lists_prog2.controller.dto.ResponseDTO;
 import com.umanizales.lists_prog2.exception.ListaDeException;
 import com.umanizales.lists_prog2.exception.ListaSeException;
@@ -19,6 +21,23 @@ public class ListDeService {
     private ListDE listBoys;
     private List<Location> locations;
 
+    private void initializaLocations()
+    {
+        locations = new ArrayList<>();
+        locations.add(new Location("54321", "Manizales"));
+        locations.add(new Location("12345", "Chinchiná"));
+        locations.add(new Location("13245", "Neira"));
+    }
+
+    public ResponseEntity<ResponseDTO> getOrphansByGradesBylocation()
+    {
+        List<GradesByLocationDTO> gradesByLocationDTOS = new ArrayList<>();
+        // Recorre todas las locaciones llamando por el método de la lista
+
+        return new ResponseEntity<>(
+                new ResponseDTO("Satisfactorio",gradesByLocationDTOS,null)
+                ,HttpStatus.OK);
+    }
 
     public boolean validateLocation(Location location)
     {
@@ -106,10 +125,34 @@ public class ListDeService {
                 new ResponseDTO("Satisfactorio",true,null), HttpStatus.OK);
     }
 
+    public ResponseEntity<ResponseDTO> orderListBoysAndGirls() throws ListaDeException
+    {
+        listBoys.orderListBoysAndGirls();
+        return new ResponseEntity<>(
+                new ResponseDTO("Satisfactorio",listBoys.getHead(), null), HttpStatus.OK);
+    }
 
+    public ResponseEntity<ResponseDTO> getGenderByLocation() throws ListaDeException
+    {
+        List<GradesByLocationDTO> gradesByLocationDTOS = new ArrayList<>();
+        for (Location loc: locations){
+            gradesByLocationDTOS.add(listBoys.getGradesByLocation(loc));
+        }
+        return new ResponseEntity<>(
+                new ResponseDTO("Satisfactorio",gradesByLocationDTOS , null), HttpStatus.OK);
+    }
 
+    public ResponseEntity<ResponseDTO> getboysByLocationByGenderDTO()
+    {
+        List<GenderGradesRHDTO>boysByGradeByaGenderDTOS = new ArrayList<>();
+        return new ResponseEntity<>(
+                new ResponseDTO("Satisfactorio", boysByGradeByaGenderDTOS,null),HttpStatus.OK);
+    }
 
-
+    public ResponseEntity<ResponseDTO> orderListInvertBoys() throws ListaDeException{
+        listBoys.orderListBoysAndGirls();
+        return new ResponseEntity<>(new ResponseDTO("Satisfactorio",listBoys.getHead(), null), HttpStatus.OK);
+    }
 
 
 
